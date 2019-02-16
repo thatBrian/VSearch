@@ -43,10 +43,19 @@ def grabLinks(link):
 
 
    for x in refinedLinks:
-     child = childLink(x,counter[refinedLinks.index(x)])
+     child = childLink("https://en.wikipedia.org"+x,counter[refinedLinks.index(x)])
      parent.children.append(child)
    
    
+
+
    
    return parent
 
+# parent = grabLinks("https://en.wikipedia.org/wiki/Laplacian_matrix")
+# for x in parent.children:
+#    print(x.count, " "+  x.link)
+
+parent = grabLinks("https://en.wikipedia.org/wiki/Train")
+for x in parent.children:
+   print(x.count, " "+  x.link)
