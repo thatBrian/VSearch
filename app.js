@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var PythonShell = require('python-shell');
 
 var app = express();
 
@@ -19,21 +20,34 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get("/",(req,res)=>{
-    res.send("HELLO");
+
+app.get("/", (req, res) => {
+    var spawn = require("child_process").spawn;
+    var processPYTHON = spawn('python3', ['-u', './scraper.py']);
+    processPYTHON.stdout.on('data', (data) => {
+        // console.log(data.toString());
+        res.render("index",{data:data});
+    });
+    processPYTHON.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+        // res.send("ERROR")
+    });
 })
+
+
 /// catch 404 and forwarding to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
+/// error handlers
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -44,7 +58,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
