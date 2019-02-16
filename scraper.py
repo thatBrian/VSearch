@@ -56,6 +56,6 @@ def grabLinks(link):
 # for x in parent.children:
 #    print(x.count, " "+  x.link)
 
-parent = grabLinks("https://en.wikipedia.org/wiki/Train")
+parent = grabLinks("https://en.wikipedia.org/wiki/Lamy")
 for x in parent.children:
    print(x.count, " "+  x.link)
