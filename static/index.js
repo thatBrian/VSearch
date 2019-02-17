@@ -1,6 +1,51 @@
 $(document).ready(function() {
   // constant variables
   // use underline to diff from d3js name
+  var wiki_api_url =
+    'https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&namespace=0&format=json&origin=*&search=';
+
+  $('#search-form').submit(function(e) {
+    e.preventDefault();
+    console.log('search is called');
+    var key_word = $('#search-input').val();
+    var the_right_url = '';
+    console.log(key_word);
+    axios
+      .get(wiki_api_url + key_word)
+      .then(function(res) {
+        the_right_url = res.data[3][0];
+        var parsed = the_right_url.split('/');
+        console.log(parsed[parsed.length - 1]);
+        key_word = parsed[parsed.length - 1];
+      })
+      .then(function() {
+        window.location = '/' + key_word;
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
+  });
+
+  function change_img_src(main_node_title) {
+    console.log(main_node_title);
+    var gif_url = '';
+    axios
+      .get(
+        'http://api.giphy.com/v1/gifs/search?api_key=RFiB4YCStEOA66u90FArIPVPXSgD8NV4&limit=1&q=' +
+          main_node_title
+      )
+      .then(function(res) {
+        console.log(res.data.data[0].images.preview_gif.url);
+        gif_url = res.data.data[0].images.preview_gif.url;
+        console.log(gif_url);
+      })
+      .then(function() {
+        $('.card-img-top').attr('src', gif_url);
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
+  }
   var svg_height = 500,
     svg_width = 960,
     max_circle_radius = 100,
@@ -9,9 +54,27 @@ $(document).ready(function() {
 
   var main_node_id = 'red';
   var main_node_title = 'red';
+  var main_node_url = '';
   function change_title() {
     console.log(document.getElementById('main-node-name'));
     document.getElementById('main-node-name').innerText = main_node_title;
+    change_img_src(main_node_title);
+    axios
+      .get(wiki_api_url + main_node_title)
+      .then(function(res) {
+        main_node_description = res.data[2][0];
+        main_node_title = res.data[1][0];
+        main_node_url = res.data[3][0];
+        var parsed = main_node_url.split('/');
+      })
+      .then(function(parsed) {
+        $('#card-content').text(main_node_description);
+        var parsed = main_node_url.split('/');
+        $('#card-btn').attr('href', parsed[parsed.length - 1]);
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
   }
   // initialize svg element
   var svg = d3
@@ -58,11 +121,13 @@ $(document).ready(function() {
   // axios.get('http://localhost:3000/search/Train').then(function(res) {
   //   console.log(res);
   // });
+  var main_node_description = '';
   d3.json('./data.json', function(error, graph) {
     if (error) throw error;
 
     main_node_id = graph.id;
     main_node_title = graph.title;
+
     change_title();
 
     simulation.nodes(graph.nodes);
@@ -90,11 +155,8 @@ $(document).ready(function() {
         d3.event.preventDefault();
         main_node_id = d.id;
         main_node_title = d.title;
-        simulation.restart();
+        simulation.alpha(1);
         change_title();
-        // d3.select(this)
-        //   .transition()
-        //   .delay(100)
         console.log('node clicked');
       });
 
