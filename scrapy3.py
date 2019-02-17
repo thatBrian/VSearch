@@ -101,7 +101,8 @@ def clean(url, b, c):
     nodeOBJ = []
     res = requests.get(url)
     soup = bs(res.text, "html.parser")
-
+    table = soup.find('table',{'class':'infobox plainlist'})
+    print(table)
     for x in nodes:
         nodeOBJ.append({
             "title": x.replace("/wiki/", ""),
