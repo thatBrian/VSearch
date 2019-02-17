@@ -13,7 +13,7 @@ phrases = [
     "Category",
     "Help",
     "Empty",
-    "Template"
+    "Template",
 ]
 
 # Global connection variable
@@ -105,6 +105,7 @@ def clean(url, b, c):
     for x in nodes:
         nodeOBJ.append({
             "title": x.replace("/wiki/", ""),
+            "url": x,
             "id": x,
             "size": counter[nodes.index(x)]
         })
@@ -141,6 +142,6 @@ def clean(url, b, c):
 
 # print(len(connection))
 data = start(sys.argv[1])
-with open('data.json', 'w') as f:
+with open('./static/data.json', 'w') as f:
   json.dump(data, f, ensure_ascii=False,indent=4)
 print("SUCCESS")

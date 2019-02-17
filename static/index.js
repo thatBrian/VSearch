@@ -54,11 +54,11 @@ $(document).ready(function() {
     node = group.selectAll('.node'),
     text = group.selectAll('.text');
 
-  // binding data to elements
-  axios.get('http://localhost:3000').then(function(res) {
-    console.log(res);
-  });
-  d3.json('./test.json', function(error, graph) {
+  // // binding data to elements
+  // axios.get('http://localhost:3000/search/Train').then(function(res) {
+  //   console.log(res);
+  // });
+  d3.json('./data.json', function(error, graph) {
     if (error) throw error;
 
     simulation.nodes(graph.nodes);
