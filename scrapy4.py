@@ -15,36 +15,57 @@ phrases = [
     "Category",
     "Help",
     "Empty",
-    "Template",
+    "Template"
 ]
 
 # Global connection variable
 connection = []
 url_to_keep = set()
 url_in_dict = dict()
-how_many_to_keep = 30
+how_many_to_keep = 50
 
-def grabLinks(link, sublink):
+
+def grabLinks(link, sublink=None):
+    conn_out = False
+    if sublink is None:
+        conn_out = True
+        sublink = link
+        link = "https://en.wikipedia.org" + link
     res = requests.get(link)
     soup = bs(res.text, "html.parser")
     refinedLinks = []
+    connection_temp_lst = []
     for link in soup.find_all("a"):
         url = link.get("href", "")
         if url.startswith("/wiki/") and not any(phrase in url for phrase in phrases):
             refinedLinks.append(url)
-            connection.append({"start": "" + sublink + "", "end": url})
-    return refinedLinks
+            if conn_out is False:
+                global connection
+                connection.append({"start": "" + sublink + "", "end": url})
+            else:
+                connection_temp_lst.append({"start": "" + sublink + "", "end": url})
+    if conn_out is False:
+        return refinedLinks
+    else:
+        return connection_temp_lst, refinedLinks
 
 
 def start(url):
-    # nodes = []
-    nodes = (grabLinks(url, url.replace("https://en.wikipedia.org","")))
+    nodes = (grabLinks(url, url.replace("https://en.wikipedia.org", "")))
     # ^ this will set the parent connection to nothing .
-    # print(nodes)#first children
     nodes2 = []
-    for x in nodes:
-        nodes2 = nodes2 + (grabLinks("https://en.wikipedia.org" + x, x))
+
+    conn_temp_lst = []
+    with mp.Pool(mp.cpu_count()) as p:
+        items = p.map(grabLinks, nodes)
+        link_temp_lst = []
+        for item in items:
+            conn_temp_lst += item[0]
+            link_temp_lst += item[1]
+        nodes2 += link_temp_lst
     # print(nodes2)#second children
+    global connection
+    connection += conn_temp_lst
     return clean(url, nodes, nodes2)
 
 
@@ -89,8 +110,8 @@ def filter_connections():
         })
 
 
-
 def clean(url, b, c):
+    # print("Cleaning")
     links = (b + c)
     counter = []
     nodes = []
@@ -103,11 +124,12 @@ def clean(url, b, c):
     nodeOBJ = []
     res = requests.get(url)
     soup = bs(res.text, "html.parser")
+
     for x in nodes:
         nodeOBJ.append({
             "title": x.replace("/wiki/", ""),
             "url": x,
-            "id": x,
+            "id":x,
             "size": counter[nodes.index(x)]
         })
 
@@ -137,12 +159,20 @@ def clean(url, b, c):
     }
     return api
 
+# start_ = time.time()
+# api = json.dumps(start('https://en.wikipedia.org/wiki/Fremont,_California'), indent=4, sort_keys=True)
+# print(api)
+# print(time.time()-start_)
 
+# with open('data.json', 'w') as outfile:
+    # json.dump(start('https://en.wikipedia.org/wiki/Breakwind_Ridge'),indent=4, sort_keys=True, outfile)
 
+data = start(sys.argv[1])
+with open('./static/data.json', 'w') as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+print("SUCCESS")
 
 
 # print(len(connection))
-data = start(sys.argv[1])
-with open('./static/data.json', 'w') as f:
-  json.dump(data, f, ensure_ascii=False,indent=4)
-print("SUCCESS")
+
+

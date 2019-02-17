@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  // constant variables
-  // use underline to diff from d3js name
   var wiki_api_url =
     'https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&namespace=0&format=json&origin=*&search=';
 
@@ -46,8 +44,10 @@ $(document).ready(function() {
         console.error(err);
       });
   }
-  var svg_height = 500,
-    svg_width = 960,
+  // constant variables
+  // use underline to diff from d3js name
+  var svg_height = 700,
+    svg_width = 1200,
     max_circle_radius = 100,
     link_distance = 400,
     charge_force_strength = -3000;
@@ -283,3 +283,7 @@ $(document).ready(function() {
       });
   }
 });
+
+function searchQuery() {
+  console.log(document.getElementById('searchQuery').value);
+}
