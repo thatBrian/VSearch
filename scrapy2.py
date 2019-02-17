@@ -56,7 +56,8 @@ def clean(url,b,c):
     nodeOBJ = []
     res = requests.get(url)
     soup = bs(res.text, "html.parser")
-
+    # GET SIDE BAR STUFF
+        
     for x in nodes:
         nodeOBJ.append({
             "title":x.replace("/wiki/",""),

@@ -37,7 +37,7 @@ app.get('/search/:url', function(req, res) {
     var spawn = require('child_process').spawn;
     var processPYTHON = spawn('python3', [
       '-u',
-      './scrapy2.py',
+      './scrapy3.py',
       'https://en.wikipedia.org/wiki/' + req.params.url
     ]);
     processPYTHON.stdout.on('data', data => {
