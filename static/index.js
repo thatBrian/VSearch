@@ -3,15 +3,15 @@ $(document).ready(function() {
   // use underline to diff from d3js name
   var svg_height = 500,
     svg_width = 960,
-    max_circle_radius = 60,
-    link_distance = 200,
-    charge_force_strength = -500;
+    max_circle_radius = 100,
+    link_distance = 400,
+    charge_force_strength = -3000;
 
   var main_node_id = 'red';
-  change_title();
+  var main_node_title = 'red';
   function change_title() {
     console.log(document.getElementById('main-node-name'));
-    document.getElementById('main-node-name').innerText = main_node_id;
+    document.getElementById('main-node-name').innerText = main_node_title;
   }
   // initialize svg element
   var svg = d3
@@ -61,6 +61,10 @@ $(document).ready(function() {
   d3.json('./data.json', function(error, graph) {
     if (error) throw error;
 
+    main_node_id = graph.id;
+    main_node_title = graph.title;
+    change_title();
+
     simulation.nodes(graph.nodes);
     simulation.force('link').links(graph.links);
 
@@ -85,6 +89,8 @@ $(document).ready(function() {
       .on('click', function(d) {
         d3.event.preventDefault();
         main_node_id = d.id;
+        main_node_title = d.title;
+        simulation.restart();
         change_title();
         // d3.select(this)
         //   .transition()
@@ -99,7 +105,7 @@ $(document).ready(function() {
       .attr('class', 'colorName')
       .attr('fill', 'black')
       .text(function(d) {
-        return d.id;
+        return d.title;
       });
   });
 
@@ -135,7 +141,7 @@ $(document).ready(function() {
   svg.call(
     d3
       .zoom()
-      .scaleExtent([1 / 2, 4])
+      .scaleExtent([1 / 4, 4])
       .on('zoom', zoomed)
   );
 
@@ -188,6 +194,13 @@ $(document).ready(function() {
           return d.y;
         } else {
           return svg_height / 2;
+        }
+      })
+      .style('fill', function(d) {
+        if (d.id !== main_node_id) {
+          return color_scale_func(d.size);
+        } else {
+          return 'pink';
         }
       });
 
