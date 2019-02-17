@@ -58,7 +58,7 @@ $(document).ready(function() {
   axios.get('http://localhost:3000').then(function(res) {
     console.log(res);
   });
-  d3.json('./graph.json', function(error, graph) {
+  d3.json('./test.json', function(error, graph) {
     if (error) throw error;
 
     simulation.nodes(graph.nodes);

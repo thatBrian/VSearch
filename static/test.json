@@ -4,152 +4,152 @@
     "nodes": [
         {
             "title": "Geographic_Names_Information_System",
-            "url": "/wiki/Geographic_Names_Information_System",
+            "id": "/wiki/Geographic_Names_Information_System",
             "size": 9
         },
         {
             "title": "United_States_Geological_Survey",
-            "url": "/wiki/United_States_Geological_Survey",
+            "id": "/wiki/United_States_Geological_Survey",
             "size": 9
         },
         {
             "title": "International_Standard_Book_Number",
-            "url": "/wiki/International_Standard_Book_Number",
+            "id": "/wiki/International_Standard_Book_Number",
             "size": 6
         },
         {
             "title": "South_Georgia_Island",
-            "url": "/wiki/South_Georgia_Island",
+            "id": "/wiki/South_Georgia_Island",
             "size": 5
         },
         {
             "title": "Geographic_coordinate_system",
-            "url": "/wiki/Geographic_coordinate_system",
+            "id": "/wiki/Geographic_coordinate_system",
             "size": 5
         },
         {
             "title": "Breakwind_Ridge",
-            "url": "/wiki/Breakwind_Ridge",
+            "id": "/wiki/Breakwind_Ridge",
             "size": 4
         },
         {
             "title": "United_States",
-            "url": "/wiki/United_States",
+            "id": "/wiki/United_States",
             "size": 4
         },
         {
             "title": "Equator",
-            "url": "/wiki/Equator",
+            "id": "/wiki/Equator",
             "size": 4
         },
         {
             "title": "British_Overseas_Territories",
-            "url": "/wiki/British_Overseas_Territories",
+            "id": "/wiki/British_Overseas_Territories",
             "size": 4
         },
         {
             "title": "Discovery_Investigations",
-            "url": "/wiki/Discovery_Investigations",
+            "id": "/wiki/Discovery_Investigations",
             "size": 4
         },
         {
             "title": "South_Georgia_and_the_South_Sandwich_Islands",
-            "url": "/wiki/South_Georgia_and_the_South_Sandwich_Islands",
+            "id": "/wiki/South_Georgia_and_the_South_Sandwich_Islands",
             "size": 4
         },
         {
             "title": "John_Wesley_Powell",
-            "url": "/wiki/John_Wesley_Powell",
+            "id": "/wiki/John_Wesley_Powell",
             "size": 4
         },
         {
             "title": "Fortuna_Bay",
-            "url": "/wiki/Fortuna_Bay",
+            "id": "/wiki/Fortuna_Bay",
             "size": 4
         },
         {
             "title": "South_Georgia_Survey",
-            "url": "/wiki/South_Georgia_Survey",
+            "id": "/wiki/South_Georgia_Survey",
             "size": 4
         },
         {
             "title": "Talk:Breakwind_Ridge",
-            "url": "/wiki/Talk:Breakwind_Ridge",
+            "id": "/wiki/Talk:Breakwind_Ridge",
             "size": 4
         },
         {
             "title": "Latitude",
-            "url": "/wiki/Latitude",
+            "id": "/wiki/Latitude",
             "size": 4
         },
         {
             "title": "Longitude",
-            "url": "/wiki/Longitude",
+            "id": "/wiki/Longitude",
             "size": 4
         },
         {
             "title": "Map_projection",
-            "url": "/wiki/Map_projection",
+            "id": "/wiki/Map_projection",
             "size": 4
         },
         {
             "title": "Mount_Paget",
-            "url": "/wiki/Mount_Paget",
+            "id": "/wiki/Mount_Paget",
             "size": 4
         },
         {
             "title": "Zavodovski_Island",
-            "url": "/wiki/Zavodovski_Island",
+            "id": "/wiki/Zavodovski_Island",
             "size": 4
         },
         {
             "title": "Leith_Harbour",
-            "url": "/wiki/Leith_Harbour",
+            "id": "/wiki/Leith_Harbour",
             "size": 4
         },
         {
             "title": "Geodetic_datum",
-            "url": "/wiki/Geodetic_datum",
+            "id": "/wiki/Geodetic_datum",
             "size": 3
         },
         {
             "title": "Universal_Transverse_Mercator_coordinate_system",
-            "url": "/wiki/Universal_Transverse_Mercator_coordinate_system",
+            "id": "/wiki/Universal_Transverse_Mercator_coordinate_system",
             "size": 3
         },
         {
             "title": "Circle_of_latitude",
-            "url": "/wiki/Circle_of_latitude",
+            "id": "/wiki/Circle_of_latitude",
             "size": 3
         },
         {
             "title": "Meridian_(geography)",
-            "url": "/wiki/Meridian_(geography)",
+            "id": "/wiki/Meridian_(geography)",
             "size": 3
         },
         {
             "title": "45%C3%9790_points",
-            "url": "/wiki/45%C3%9790_points",
+            "id": "/wiki/45%C3%9790_points",
             "size": 3
         },
         {
             "title": "Ocean_Harbour",
-            "url": "/wiki/Ocean_Harbour",
+            "id": "/wiki/Ocean_Harbour",
             "size": 3
         },
         {
             "title": "History_of_South_Georgia_and_the_South_Sandwich_Islands",
-            "url": "/wiki/History_of_South_Georgia_and_the_South_Sandwich_Islands",
+            "id": "/wiki/History_of_South_Georgia_and_the_South_Sandwich_Islands",
             "size": 3
         },
         {
             "title": "Fin_whale",
-            "url": "/wiki/Fin_whale",
+            "id": "/wiki/Fin_whale",
             "size": 3
         },
         {
             "title": "Falkland_Islands_Dependencies",
-            "url": "/wiki/Falkland_Islands_Dependencies",
+            "id": "/wiki/Falkland_Islands_Dependencies",
             "size": 3
         }
     ],

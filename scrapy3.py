@@ -105,7 +105,7 @@ def clean(url, b, c):
     for x in nodes:
         nodeOBJ.append({
             "title": x.replace("/wiki/", ""),
-            "url": x,
+            "id": x,
             "size": counter[nodes.index(x)]
         })
 
@@ -131,7 +131,7 @@ def clean(url, b, c):
         "title": soup.title.string.replace(" - Wikipedia", ""),
         "url": url,
         "nodes": nodeOBJ,
-        "connections": connection
+        "links": connection
     }
     return api
 
