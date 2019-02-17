@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    { "id": "red", "size": 10 },
+    { "id": "orange", "size": 9 },
+    { "id": "yellow", "size": 8 },
+    { "id": "green", "size": 7 },
+    { "id": "blue", "size": 6 },
+    { "id": "violet", "size": 5 },
+    { "id": "pink", "size": 3 }
+  ],
+  "links": [
+    { "source": "red", "target": "yellow" },
+    { "source": "red", "target": "green" },
+    { "source": "red", "target": "blue" },
+    { "source": "red", "target": "orange" },
+    { "source": "orange", "target": "yellow" },
+    { "source": "pink", "target": "violet" },
+    { "source": "violet", "target": "green" }
+  ]
+}

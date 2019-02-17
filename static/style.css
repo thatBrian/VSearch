@@ -1,0 +1,17 @@
+.node {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-width: 1.5px;
+}
+
+.colorName {
+  font: bold 30px sans-serif;
+}
+
+text {
+  pointer-events: none;
+}
