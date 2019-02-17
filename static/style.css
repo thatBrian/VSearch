@@ -3,6 +3,10 @@
   stroke-width: 1.5px;
 }
 
+svg {
+  background: pink;
+}
+
 .link {
   stroke: #999;
   stroke-width: 1.5px;
