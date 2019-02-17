@@ -1,8 +1,8 @@
 $(document).ready(function() {
   // constant variables
   // use underline to diff from d3js name
-  var svg_height = 500,
-    svg_width = 960,
+  var svg_height = 900,
+    svg_width = 1200,
     max_circle_radius = 100,
     link_distance = 400,
     charge_force_strength = -3000;
@@ -221,3 +221,7 @@ $(document).ready(function() {
       });
   }
 });
+
+function searchQuery(){
+  console.log(document.getElementById("searchQuery").value)
+}
