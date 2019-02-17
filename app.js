@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var PythonShell = require('python-shell');
 
 var app = express();
 
@@ -20,19 +19,21 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.get("/", (req, res) => {
+app.get('/', function (req, res) {
     var spawn = require("child_process").spawn;
-    var processPYTHON = spawn('python3', ['-u', './scraper.py']);
+    var processPYTHON = spawn('python3', ['-u', './scrapy2.py']);
     processPYTHON.stdout.on('data', (data) => {
-        // console.log(data.toString());
-        res.render("index",{data:data});
+        
+        callThis(data,res);
     });
-    processPYTHON.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-        // res.send("ERROR")
-    });
-})
+});
+function callThis(data,res){
+    var bob = require('./data.json');
+    res.setHeader('Content-Type', 'application/json');
+    res.send(bob);
+    console.log(data);
+}
+
 
 
 /// catch 404 and forwarding to error handler

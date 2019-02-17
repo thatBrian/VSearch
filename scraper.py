@@ -66,13 +66,15 @@ class Node:
 
     def buildJSON(self):
         ary = []
+        xJSON = {}
         for ref in self.references:
             ary.append({"url": ref[0], "points": ref[1],})
             xJSON = {
                 "name": self.name,
                 "size": self.size,
                 "link": self.link,
-                "degree": self.degree,
+                "degree": self.degree,res = requests.get(link)
+    soup = bs(res.text, "html.parser")
                 "refrence": ary,
             }
         return xJSON
@@ -115,7 +117,7 @@ def main():
     max_degree = 1
     how_many_to_keep = 10
 
-    parent = grabLinks("https://en.wikipedia.org/wiki/Lamy")
+    parent = grabLinks("https://en.wikipedia.org/wiki/Breakwind_Ridge")
     new_node = Node(parent.link, degree=0)
     all_nodes[parent.link] = new_node
     q.append(new_node)
@@ -129,7 +131,8 @@ def main():
         sorted_list.append([key, all_nodes[key]])
     sorted_list = sort_dictionary_by_size(sorted_list)
     x = [item[1].buildJSON() for item in sorted_list[:how_many_to_keep]]
-    print(json.dumps(x))
+    
+    print(json.dumps(x[:6]))
 
 main()
 
