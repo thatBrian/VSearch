@@ -19,19 +19,28 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
-    var spawn = require("child_process").spawn;
-    var processPYTHON = spawn('python3', ['-u', './scrapy2.py']);
-    processPYTHON.stdout.on('data', (data) => {
-        
-        callThis(data,res);
-    });
+app.get("/",(req,res)=>{
+    res.render('index');        
+})
+app.get('/search/:url', function (req, res) {
+    console.log(req.params.url);
+    if (req.params.url == "") {
+        res.send("NO URL");
+    } else {
+        var spawn = require("child_process").spawn;
+        var processPYTHON = spawn('python3', ['-u', './scrapy2.py', "https://en.wikipedia.org/wiki/" + req.params.url]);
+        processPYTHON.stdout.on('data', (data) => {
+
+            callThis(data, res);
+        });
+    }
+
 });
-function callThis(data,res){
+function callThis(data, res) {
     var bob = require('./data.json');
     res.setHeader('Content-Type', 'application/json');
     res.send(bob);
-    console.log(data);
+    console.log(data.toString());
 }
 
 

@@ -73,8 +73,7 @@ class Node:
                 "name": self.name,
                 "size": self.size,
                 "link": self.link,
-                "degree": self.degree,res = requests.get(link)
-    soup = bs(res.text, "html.parser")
+                "degree": self.degree,
                 "refrence": ary,
             }
         return xJSON

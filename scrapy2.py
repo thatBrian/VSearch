@@ -60,7 +60,6 @@ def clean(url,b,c):
     for x in nodes:
         nodeOBJ.append({
             "title":x.replace("/wiki/",""),
-            "url":x,
             "size":counter[nodes.index(x)]
         })
     # the api to return
@@ -72,12 +71,7 @@ def clean(url,b,c):
     }
     return api
         
-# api = json.dumps(start('https://en.wikipedia.org/wiki/Breakwind_Ridge'),indent=4, sort_keys=True)
-# print(api)
-# with open('data.json', 'w') as outfile:
-#     json.dump(start('https://en.wikipedia.org/wiki/Breakwind_Ridge'),indent=4, sort_keys=True, outfile)
-
-data = start('https://en.wikipedia.org/wiki/Breakwind_Ridge')
+data = start(sys.argv[1])
 with open('data.json', 'w') as f:
   json.dump(data, f, ensure_ascii=False,indent=4)
-  print("DONE")
+print("SUCCESS")
