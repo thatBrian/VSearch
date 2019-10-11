@@ -7,7 +7,7 @@
 - Node.js(Express.js) for server
 - D3.js for data-visualization
 
-## A Overview
+## An Overview
 
 VSearch will help you visualize networks by parsing through thousands of weblinks on a given topic, drawing connections, evaluating importance, and constructing meaningful abstractions to help users better understand surrounding topics. It brings data visualization to both everyday inquiries and academic research.
 
